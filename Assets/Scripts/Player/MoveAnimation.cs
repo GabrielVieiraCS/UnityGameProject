@@ -6,7 +6,6 @@ public class MoveAnimation : MonoBehaviour
 {
 
     Animator animPlayer;
-    bool walking = false;
 
     // Start is called before the first frame update
     void Start()
@@ -21,17 +20,21 @@ public class MoveAnimation : MonoBehaviour
     }
 
     public void StartAnimation(){
-        if(walking == false){
-            animPlayer.SetTrigger("walk");
-            walking = true;
-        }
+        animPlayer.SetTrigger("walk");
         
     }
 
     public void StopAnimation(){
-        if(walking == true){
-            animPlayer.SetTrigger("stop");
-            walking = false;
-        }
+        animPlayer.SetTrigger("stop");
     }
+
+    public void Jump() {
+        animPlayer.SetTrigger("jump");
+    }
+
+    public void StopJump() {
+        animPlayer.SetTrigger("stopJump");
+    }
+
+
 }

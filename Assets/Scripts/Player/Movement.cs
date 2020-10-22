@@ -43,7 +43,7 @@ public class Movement : MonoBehaviour
     void FixedUpdate(){
         if(Input.GetKeyDown(KeyCode.Space)){
             Debug.Log("INN");
-            controller.Move(Vector3.up * 10);
+            controller.SimpleMove(Vector3.up * 10);
         }
     }
 }

@@ -36,5 +36,8 @@ public class MoveAnimation : MonoBehaviour
         animPlayer.SetTrigger("stopJump");
     }
 
+    public void IsDead(){
+        animPlayer.SetTrigger("dead");
+    }
 
 }

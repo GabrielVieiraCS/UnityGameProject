@@ -21,11 +21,13 @@ public class Imposter : MonoBehaviour
         isImposter = true;
         players = GameObject.FindGameObjectsWithTag("Player");
 
+        //find all UI Elements
         killText = GameObject.Find("Kill Text").GetComponent<Text>();
         reportText = GameObject.Find("Report Text").GetComponent<Text>();
         sabotageText = GameObject.Find("Sabotage Text").GetComponent<Text>();
         useText = GameObject.Find("Use Text").GetComponent<Text>();
 
+        //Set them to prefered opacity
         killText.CrossFadeAlpha(0.3f, 0f, false);
         reportText.CrossFadeAlpha(0.3f, 0f, false);
         sabotageText.CrossFadeAlpha(0.3f, 0f, false);
@@ -37,23 +39,30 @@ public class Imposter : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+
+        ClosestPersonDeadAndAliveSearch();
+
+    }
+
+
+    public void ClosestPersonDeadAndAliveSearch() {
+
         GameObject closest = null;
         float distance = 0;
 
         GameObject closestDead = null;
         float distanceDead = 0f;
-        foreach (GameObject player in players)
-        {
+        foreach (GameObject player in players){
             //find the nearest player alive
-            if(!((transform.position - player.transform.position).magnitude == 0f) && !player.GetComponent<Dead>().IsDead()){
-                if(closest == null){
-                        closest = player;
-                        distance = (transform.position - player.transform.position).magnitude;
-                }else{
+            if (!((transform.position - player.transform.position).magnitude == 0f) && !player.GetComponent<Dead>().IsDead()){
+                if (closest == null){
+                    closest = player;
+                    distance = (transform.position - player.transform.position).magnitude;
+                }
+                else{
 
                     float tempDistance = (transform.position - player.transform.position).magnitude;
-                    if(tempDistance < distance){
+                    if (tempDistance < distance){
                         closest = player;
                         distance = tempDistance;
                     }
@@ -62,19 +71,16 @@ public class Imposter : MonoBehaviour
             }
 
             //find the nearenst dead player
-            if (player.GetComponent<Dead>().IsDead()) {
+            if (player.GetComponent<Dead>().IsDead()){
 
-                if (closestDead == null)
-                {
+                if (closestDead == null){
                     closestDead = player;
                     distanceDead = (transform.position - player.transform.position).magnitude;
                 }
-                else
-                {
+                else{
 
                     float tempDistance = (transform.position - player.transform.position).magnitude;
-                    if (tempDistance < distanceDead)
-                    {
+                    if (tempDistance < distanceDead){
                         closestDead = player;
                         distanceDead = tempDistance;
                     }
@@ -85,14 +91,15 @@ public class Imposter : MonoBehaviour
         }
 
         //check to see if the nearest player alive is killable
-        if(distance <= 3f && closest != null){
+        if (distance <= 3f && closest != null){
             killText.CrossFadeAlpha(1, 0.0f, false);
 
-            if(Input.GetKeyDown(KeyCode.Q)){
+            if (Input.GetKeyDown(KeyCode.Q)){
                 closest.GetComponent<Dead>().HasDied();
             }
 
-        }else{
+        }
+        else{
             killText.CrossFadeAlpha(0.3f, 0f, false);
         }
 
@@ -101,7 +108,8 @@ public class Imposter : MonoBehaviour
         if (distanceDead <= 3f && closestDead != null){
             reportText.CrossFadeAlpha(1, 0.0f, false);
 
-            if (Input.GetKeyDown(KeyCode.R)){
+            if (Input.GetKeyDown(KeyCode.R))
+            {
                 //what to do when reported
             }
         }

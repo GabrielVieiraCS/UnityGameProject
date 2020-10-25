@@ -110,7 +110,7 @@ public class Imposter : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                //what to do when reported
+                Debug.Log("ASDFASDFASDFASDf");
             }
         }
         else{

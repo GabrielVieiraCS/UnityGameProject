@@ -12,13 +12,14 @@ public class Movement : NetworkBehaviour
     private float gravityValue = -9.81f;
     private Vector3 playerVelocity;
 
-    public Transform cam;
+    private Transform cam;
     public CharacterController controller;
     public float speed = 6f;
     public float turnSmoothTime = 0.1f;
     // Update is called once per frame
 
-    void Start(){
+    void Start() {
+        cam = GameObject.Find("Main Camera").GetComponent<Transform>();
         moveAnimation = GetComponent<MoveAnimation>();
     }
     void Update()

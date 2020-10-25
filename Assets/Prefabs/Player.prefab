@@ -1615,7 +1615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a51e7797eaf088049a455fee8e110f50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAnimation: {fileID: 731289909143353866}
+  prefab: {fileID: 2778142041380625631, guid: ff0851a3bf1d7ca4796a1d84ec635ca3, type: 3}
 --- !u!1 &731289909177091578
 GameObject:
   m_ObjectHideFlags: 0

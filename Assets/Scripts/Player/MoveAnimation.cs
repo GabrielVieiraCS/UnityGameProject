@@ -16,7 +16,6 @@ public class MoveAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void StartAnimation(){
@@ -37,6 +36,9 @@ public class MoveAnimation : MonoBehaviour
     }
 
     public void IsDead(){
+        if(animPlayer == null){
+            animPlayer = GetComponent<Animator>();
+        }
         animPlayer.SetTrigger("dead");
     }
 

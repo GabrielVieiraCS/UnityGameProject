@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class Movement : MonoBehaviour
+public class Movement : NetworkBehaviour
 {
 
     private MoveAnimation moveAnimation;
@@ -21,7 +22,8 @@ public class Movement : MonoBehaviour
         moveAnimation = GetComponent<MoveAnimation>();
     }
     void Update()
-    {
+    {   
+        if (!hasAuthority) { return; }
         //if player is on the ground, stop him falling
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0) {

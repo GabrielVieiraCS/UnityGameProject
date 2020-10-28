@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class Imposter : MonoBehaviour
 {
 
-    public bool isImposter;
+    public bool isImposter = false;
+    public bool isDummy;
     private GameObject[] players;
 
     private Text killText;
@@ -15,10 +16,20 @@ public class Imposter : MonoBehaviour
     private Text sabotageText;
     private Text useText;
 
-    // Start is called before the first frame update
-    void Start()
+
+    void Update()
     {
+        if (!isImposter || isDummy) { return; }
+        ClosestPersonDeadAndAliveSearch();
+
+    }
+
+    public void IsImpostor() {
+
         isImposter = true;
+
+        if (isDummy) { return; }
+
         players = GameObject.FindGameObjectsWithTag("Player");
 
         //find all UI Elements
@@ -32,15 +43,6 @@ public class Imposter : MonoBehaviour
         reportText.CrossFadeAlpha(0.3f, 0f, false);
         sabotageText.CrossFadeAlpha(0.3f, 0f, false);
         useText.CrossFadeAlpha(0.3f, 0f, false);
-
-
-    }
-
-
-    void FixedUpdate()
-    {
-
-        ClosestPersonDeadAndAliveSearch();
 
     }
 
@@ -117,5 +119,9 @@ public class Imposter : MonoBehaviour
             reportText.CrossFadeAlpha(0.3f, 0f, false);
         }
 
+    }
+
+    public bool CheckImpostor() {
+        return isImposter;
     }
 }

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 
-public class Imposter : MonoBehaviour
+public class Imposter : NetworkBehaviour
 {
 
     public bool isImposter;

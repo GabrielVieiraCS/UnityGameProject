@@ -1,7 +1,7 @@
-﻿using System.Collections;
+﻿using Mirror;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror;
 
 public class Movement : NetworkBehaviour
 {
@@ -18,14 +18,30 @@ public class Movement : NetworkBehaviour
     public float turnSmoothTime = 0.1f;
     // Update is called once per frame
 
-    void Start() {
+    private void Start() 
+    {
         cam = GameObject.Find("Main Camera").GetComponent<Transform>();
         moveAnimation = GetComponent<MoveAnimation>();
     }
-    void Update()
+
+    [Client]
+    private void Update()
     {   
         if (!hasAuthority) { return; }
-        //if player is on the ground, stop him falling
+        CmdMovement();
+    }
+
+    [Command]
+    private void CmdMovement() 
+    {
+        // Validate Player Logic
+        RpcMove();
+    }
+
+    [ClientRpc]
+    private void RpcMove() 
+    {
+         //if player is on the ground, stop him falling
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0) {
             playerVelocity.y = 0f;
@@ -63,5 +79,8 @@ public class Movement : NetworkBehaviour
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 
+
     }
+
+
 }

@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class MoveAnimation : MonoBehaviour
+public class MoveAnimation : NetworkBehaviour
 {
 
     Animator animPlayer;
@@ -12,7 +13,7 @@ public class MoveAnimation : MonoBehaviour
     {
         animPlayer = GetComponent<Animator>();
     }
-
+    
     // Update is called once per frame
     void Update()
     {

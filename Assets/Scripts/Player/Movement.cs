@@ -54,7 +54,7 @@ public class Movement : MonoBehaviour
 
         if (playerVelocity.y == 0f && Input.GetKeyDown(KeyCode.Space)) {
             moveAnimation.Jump();
-            playerVelocity.y += Mathf.Sqrt(5f * -3.0f * gravityValue);
+            playerVelocity.y += Mathf.Sqrt(2f * -3.0f * gravityValue);
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;

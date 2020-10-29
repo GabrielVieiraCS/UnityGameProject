@@ -1,9 +1,8 @@
-﻿using Mirror;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : NetworkBehaviour
+public class Movement : MonoBehaviour
 {
 
     private MoveAnimation moveAnimation;
@@ -12,36 +11,18 @@ public class Movement : NetworkBehaviour
     private float gravityValue = -9.81f;
     private Vector3 playerVelocity;
 
-    private Transform cam;
+    public Transform cam;
     public CharacterController controller;
     public float speed = 6f;
     public float turnSmoothTime = 0.1f;
     // Update is called once per frame
 
-    private void Start() 
-    {
-        cam = GameObject.Find("Main Camera").GetComponent<Transform>();
+    void Start(){
         moveAnimation = GetComponent<MoveAnimation>();
     }
-
-    [Client]
-    private void Update()
-    {   
-        if (!hasAuthority) { return; }
-        CmdMovement();
-    }
-
-    [Command]
-    private void CmdMovement() 
+    void Update()
     {
-        // Validate Player Logic
-        RpcMove();
-    }
-
-    [ClientRpc]
-    private void RpcMove() 
-    {
-         //if player is on the ground, stop him falling
+        //if player is on the ground, stop him falling
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0) {
             playerVelocity.y = 0f;
@@ -73,14 +54,11 @@ public class Movement : NetworkBehaviour
 
         if (playerVelocity.y == 0f && Input.GetKeyDown(KeyCode.Space)) {
             moveAnimation.Jump();
-            playerVelocity.y += Mathf.Sqrt(5f * -3.0f * gravityValue);
+            playerVelocity.y += Mathf.Sqrt(2f * -3.0f * gravityValue);
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 
-
     }
-
-
 }

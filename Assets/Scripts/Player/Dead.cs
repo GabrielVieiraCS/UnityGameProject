@@ -5,6 +5,8 @@ using UnityEngine;
 public class Dead : MonoBehaviour
 {
     private bool isDead;
+    
+    public bool reported = false;
     public GameObject prefab;
     private GameObject selfPlayer;
     
@@ -29,10 +31,20 @@ public class Dead : MonoBehaviour
         isDead = true;
         body.GetComponent<CharacterController>().enabled = false;
         gameObject.transform.GetChild(0).gameObject.layer = 1;
+
+        body.GetComponent<Dead>().SetDead(true);
     }
 
     public bool IsDead(){
         return isDead; 
+    }
+
+    public bool Reported(){
+        return reported;
+    }
+
+    public void SetDead(bool v){
+        isDead = v;
     }
 
     void Update(){

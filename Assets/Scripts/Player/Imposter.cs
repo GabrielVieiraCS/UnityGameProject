@@ -17,7 +17,7 @@ public class Imposter : MonoBehaviour
     private Text useText;
 
 
-    void Update()
+    void LateUpdate()
     {
         if (!isImposter || isDummy) { return; }
         ClosestPersonDeadAndAliveSearch();
@@ -52,11 +52,12 @@ public class Imposter : MonoBehaviour
         GameObject closest = null;
         float distance = 0;
 
+        GameObject[] deadPlayers = GameObject.FindGameObjectsWithTag("DeadPlayer");
         GameObject closestDead = null;
         float distanceDead = 0f;
         foreach (GameObject player in players){
-            //find the nearest player alive
-            if (!((transform.position - player.transform.position).magnitude == 0f) && !player.GetComponent<Dead>().IsDead()){
+            //find the nearest innocent player alive
+            if (!((transform.position - player.transform.position).magnitude == 0f) && !player.GetComponent<Dead>().IsDead() && !(player.GetComponent<Imposter>().CheckImpostor())){
                 if (closest == null){
                     closest = player;
                     distance = (transform.position - player.transform.position).magnitude;
@@ -71,9 +72,10 @@ public class Imposter : MonoBehaviour
 
                 }
             }
-
+        }
+        foreach(GameObject player in deadPlayers){
             //find the nearenst dead player
-            if (player.GetComponent<Dead>().IsDead()){
+            if (player.GetComponent<Dead>().IsDead() && !player.GetComponent<Dead>().Reported()){
 
                 if (closestDead == null){
                     closestDead = player;
@@ -112,7 +114,7 @@ public class Imposter : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                Debug.Log("ASDFASDFASDFASDf");
+                GameObject.Find("Report Controller").GetComponent<ReportFunction>().BodyReported();
             }
         }
         else{

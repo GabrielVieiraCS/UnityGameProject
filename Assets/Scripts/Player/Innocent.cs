@@ -34,7 +34,7 @@ public class Innocent : MonoBehaviour
     }
 
     
-    void Update()
+    void LateUpdate()
     {
         if (!isInnocent || isDummy) { return; }
         ClosestPersonDeadSearch();
@@ -42,11 +42,12 @@ public class Innocent : MonoBehaviour
 
     public void ClosestPersonDeadSearch() {
 
+        GameObject[] deadPlayers = GameObject.FindGameObjectsWithTag("DeadPlayer");
         GameObject closestDead = null;
         float distance = 0f;
 
         //find the nearenst dead player
-        foreach (GameObject player in players) {
+        foreach (GameObject player in deadPlayers) {
 
             if (player.GetComponent<Dead>().IsDead())
             {
@@ -72,7 +73,7 @@ public class Innocent : MonoBehaviour
             reportText.CrossFadeAlpha(1, 0.0f, false);
 
             if (Input.GetKeyDown(KeyCode.R)){
-                Debug.Log("ASDFASDFASDFASDf");
+                GameObject.Find("Report Controller").GetComponent<ReportFunction>().BodyReported();
             }
         }
         else{

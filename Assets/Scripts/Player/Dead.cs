@@ -24,8 +24,15 @@ public class Dead : MonoBehaviour
     }
 
     public void HasDied(){
+        //create dead body
         GameObject body = Instantiate(prefab, transform.position + new Vector3(0,0.2f,0), Quaternion.Euler(-90f,0,0));
         body.GetComponent<MoveAnimation>().IsDead();
+
+
+        Transform child = body.transform.GetChild(0);
+        child.GetComponent<SkinnedMeshRenderer> ().material = transform.GetChild(0).GetComponent<SkinnedMeshRenderer> ().material;
+
+        //player mesh gone
         CharacterController cc = GetComponent<CharacterController>();
         cc.enabled = false;
         isDead = true;

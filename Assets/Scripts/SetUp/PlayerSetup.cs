@@ -9,10 +9,12 @@ public class PlayerSetup : MonoBehaviour
 
     private GameObject[] players;
     public GameObject[] impostors;
+    System.Random rnd ;
 
     void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
+        rnd = new System.Random();
 
         int noImpostors = NoOfImpostors();
         impostors = new GameObject[noImpostors];
@@ -20,6 +22,8 @@ public class PlayerSetup : MonoBehaviour
         SetupImpostors(noImpostors);
 
         SetupPlayers();
+
+        AssignColours();
     }
 
 
@@ -36,8 +40,6 @@ public class PlayerSetup : MonoBehaviour
     }
 
     private void SetupImpostors(int noImp) {
-
-        System.Random rnd = new System.Random();
 
         for (int i = 0; i < noImp; i++){
 
@@ -69,6 +71,28 @@ public class PlayerSetup : MonoBehaviour
             }
         
         }
+
+    }
+
+    private void AssignColours(){
+
+        Material[] playerMaterials = GameObject.Find("Skin Controller").GetComponent<SkinController>().GetMaterials();
+        Debug.Log(playerMaterials.Length);
+
+        for(int i = 0; i < players.Length; i++){
+
+            Transform child = players[i].transform.GetChild(0);
+            int temPos = rnd.Next(playerMaterials.Length);
+            child.GetComponent<SkinnedMeshRenderer>().material = playerMaterials[temPos];
+
+            Material[] playerMaterialsTemp = new Material[playerMaterials.Length - 1];
+            for(int j = 0; j < playerMaterials.Length; j++){
+                if(j<temPos){playerMaterialsTemp[j] = playerMaterials[j];}
+                else if(j>temPos){playerMaterialsTemp[j-1] = playerMaterials[j];}
+            }
+            playerMaterials = playerMaterialsTemp;
+        }
+
 
     }
             

@@ -1367,12 +1367,12 @@ GameObject:
   - component: {fileID: 7773360468483161473}
   - component: {fileID: 357761511651627415}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Old Player 2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7773360469234165398
 Transform:
   m_ObjectHideFlags: 0
@@ -1469,6 +1469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isImposter: 0
+  isDummy: 0
 --- !u!114 &7773360468483161473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1481,6 +1482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a51e7797eaf088049a455fee8e110f50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reported: 0
   prefab: {fileID: 2778142041380625631, guid: ff0851a3bf1d7ca4796a1d84ec635ca3, type: 3}
 --- !u!114 &357761511651627415
 MonoBehaviour:
@@ -1495,6 +1497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInnocent: 0
+  isDummy: 0
 --- !u!1 &7773360468484428955
 GameObject:
   m_ObjectHideFlags: 0

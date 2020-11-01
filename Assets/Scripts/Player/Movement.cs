@@ -5,6 +5,8 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
 
+    public bool isDummy;
+
     private MoveAnimation moveAnimation;
     private float turnSmoothVel;
     private bool groundedPlayer;
@@ -19,9 +21,12 @@ public class Movement : MonoBehaviour
 
     void Start(){
         moveAnimation = GetComponent<MoveAnimation>();
+        if(isDummy == null){ isDummy = false;}
     }
     void Update()
     {
+        if(isDummy){return;}
+
         //if player is on the ground, stop him falling
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0) {

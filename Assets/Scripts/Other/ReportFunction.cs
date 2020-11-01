@@ -24,16 +24,42 @@ public class ReportFunction : MonoBehaviour
 
     public void BodyReported(){
 
+        GameObject.Find("Imposter Canvas").GetComponent<Canvas>().enabled = false;
+        GameObject.Find("Crewmate Canvas").GetComponent<Canvas>().enabled = false;
+        GameObject.Find("Report UI").GetComponent<Canvas>().enabled = true;
+
         for(int i = 0; i < players.Length; i++){
             players[i].transform.position = reportLocForPlayers[i].transform.position;
 
-            GameObject[] bodies = GameObject.FindGameObjectsWithTag("DeadPlayer");
-
-            foreach (GameObject body in bodies){
-                body.SetActive(false);
-            }
+            players[i].GetComponent<Movement>().enabled = false;
             
         }
 
+        GameObject[] bodies = GameObject.FindGameObjectsWithTag("DeadPlayer");
+
+        foreach (GameObject body in bodies){
+            body.SetActive(false);
+        }
+
+    }
+
+    public void PersonVoted(int person){
+        //do something
+        
+        GameObject.Find("Report UI").GetComponent<Canvas>().enabled = false;
+
+        for(int i = 0; i < players.Length; i++){
+
+            players[i].GetComponent<Movement>().enabled = true;
+
+            if(players[i].GetComponent<Innocent>().CheckInnocent()){
+                GameObject.Find("Crewmate Canvas").GetComponent<Canvas>().enabled = true;
+            }else{
+                GameObject.Find("Imposter Canvas").GetComponent<Canvas>().enabled = true;
+                GameObject.Find("Crewmate Canvas").GetComponent<Canvas>().enabled = true;
+            }
+            
+            
+        }
     }
 }

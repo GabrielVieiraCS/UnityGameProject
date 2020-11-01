@@ -10,6 +10,7 @@ public class Innocent : MonoBehaviour
     private GameObject[] players;
     private Text reportText;
     private Text useText;
+    private bool reported = false;
 
     public void IsInnocent() {
 
@@ -29,12 +30,12 @@ public class Innocent : MonoBehaviour
         useText.CrossFadeAlpha(0.3f, 0f, false);
 
         //disable Impostor Elements
-        GameObject.Find("Imposter Canvas").SetActive(false);
+        GameObject.Find("Imposter Canvas").GetComponent<Canvas>().enabled = false;
 
     }
 
     
-    void LateUpdate()
+    void Update()
     {
         if (!isInnocent || isDummy) { return; }
         ClosestPersonDeadSearch();
@@ -73,11 +74,17 @@ public class Innocent : MonoBehaviour
             reportText.CrossFadeAlpha(1, 0.0f, false);
 
             if (Input.GetKeyDown(KeyCode.R)){
-                GameObject.Find("Report Controller").GetComponent<ReportFunction>().BodyReported();
+                reported = true;
             }
         }
         else{
             reportText.CrossFadeAlpha(0.3f, 0f, false);
+        }
+    }
+
+    void LateUpdate(){
+        if(reported){
+            GameObject.Find("Report Controller").GetComponent<ReportFunction>().BodyReported();
         }
     }
 

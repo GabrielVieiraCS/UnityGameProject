@@ -61,6 +61,8 @@ public class PlayerSetup : MonoBehaviour
 
     private void SetupPlayers() {
 
+        GameObject.Find("Report UI").GetComponent<Canvas>().enabled = false;
+
         foreach (GameObject player in players) {
 
             if (impostors.Contains(player)){

@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Mirror;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class Movement : NetworkBehaviour
 {
 
     private MoveAnimation moveAnimation;
@@ -17,12 +18,33 @@ public class Movement : MonoBehaviour
     public float turnSmoothTime = 0.1f;
     // Update is called once per frame
 
-    void Start(){
+    private void Start() 
+    {
         moveAnimation = GetComponent<MoveAnimation>();
     }
-    void Update()
+
+    [Client]
+    private void Update()
+    {   
+    
+        if (!isLocalPlayer) 
+        { 
+            return; 
+        }
+        CmdMovement();
+    }
+
+    [Command]
+    private void CmdMovement() 
     {
-        //if player is on the ground, stop him falling
+        // Validate Player Logic
+        RpcMove();
+    }
+
+    [ClientRpc]
+    private void RpcMove() 
+    {
+         //if player is on the ground, stop him falling
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0) {
             playerVelocity.y = 0f;
@@ -54,11 +76,14 @@ public class Movement : MonoBehaviour
 
         if (playerVelocity.y == 0f && Input.GetKeyDown(KeyCode.Space)) {
             moveAnimation.Jump();
-            playerVelocity.y += Mathf.Sqrt(2f * -3.0f * gravityValue);
+            playerVelocity.y += Mathf.Sqrt(5f * -3.0f * gravityValue);
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 
+
     }
+
+
 }

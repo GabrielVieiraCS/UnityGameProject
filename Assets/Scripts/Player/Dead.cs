@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class Dead : MonoBehaviour
+public class Dead : NetworkBehaviour
 {
     private bool isDead;
     public GameObject prefab;

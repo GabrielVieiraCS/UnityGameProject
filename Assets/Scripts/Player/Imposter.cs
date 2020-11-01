@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 
-public class Imposter : MonoBehaviour
+public class Imposter : NetworkBehaviour
 {
 
-    public bool isImposter = false;
-    public bool isDummy;
+    public bool isImposter;
     private GameObject[] players;
 
     private Text killText;
@@ -16,20 +16,10 @@ public class Imposter : MonoBehaviour
     private Text sabotageText;
     private Text useText;
 
-
-    void Update()
+    // Start is called before the first frame update
+    void Start()
     {
-        if (!isImposter || isDummy) { return; }
-        ClosestPersonDeadAndAliveSearch();
-
-    }
-
-    public void IsImpostor() {
-
         isImposter = true;
-
-        if (isDummy) { return; }
-
         players = GameObject.FindGameObjectsWithTag("Player");
 
         //find all UI Elements
@@ -43,6 +33,15 @@ public class Imposter : MonoBehaviour
         reportText.CrossFadeAlpha(0.3f, 0f, false);
         sabotageText.CrossFadeAlpha(0.3f, 0f, false);
         useText.CrossFadeAlpha(0.3f, 0f, false);
+
+
+    }
+
+
+    void FixedUpdate()
+    {
+
+        ClosestPersonDeadAndAliveSearch();
 
     }
 
@@ -112,16 +111,12 @@ public class Imposter : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                Debug.Log("ASDFASDFASDFASDf");
+                //what to do when reported
             }
         }
         else{
             reportText.CrossFadeAlpha(0.3f, 0f, false);
         }
 
-    }
-
-    public bool CheckImpostor() {
-        return isImposter;
     }
 }

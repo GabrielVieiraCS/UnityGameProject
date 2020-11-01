@@ -1,17 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ReportFunction : MonoBehaviour
 {
     
     private GameObject[] players;
     private GameObject[] reportLocForPlayers;
+    private Color[] colors;
 
 
     void Start()
     {
-        players = GameObject.FindGameObjectsWithTag("Player");
+        players = GameObject.Find("GameDetails").GetComponent<GameDetails>().GetPlayers();
         reportLocForPlayers = new GameObject[players.Length];
 
         for(int i = 0; i < players.Length; i++){
@@ -19,6 +21,11 @@ public class ReportFunction : MonoBehaviour
             
         }   
 
+        //get rid of UI elements that will nt be used
+        
+        for(int i = (players.Length); i < 10; i++){
+            GameObject.Find("Panel"+i.ToString()).SetActive(false);
+        }
         
     }
 
@@ -39,6 +46,41 @@ public class ReportFunction : MonoBehaviour
 
         foreach (GameObject body in bodies){
             body.SetActive(false);
+        }
+
+        SetupReportUI();
+
+    }
+
+    public void SetupReportUI(){
+        Color[] playerColors = GameObject.Find("GameDetails").GetComponent<GameDetails>().GetColors();
+
+        int alive = 0;
+        for(int i = 0; i < players.Length; i++){
+            //Set Player Name if Alive
+            if(!players[i].GetComponent<Dead>().IsDead()){
+                Text name = GameObject.Find("Name"+alive.ToString()).GetComponent<Text>();
+                name.text = players[i].GetComponent<PlayerDetails>().name;
+                //set Color
+                name.color = playerColors[i];
+                alive ++;
+            }
+        }
+
+        int dead = 0;
+        for(int i = 0; i < players.Length; i++){
+            //Set Player Name if Dead
+            if(players[i].GetComponent<Dead>().IsDead()){
+                Text name = GameObject.Find("Name"+(alive + dead).ToString()).GetComponent<Text>();
+                name.text = players[i].GetComponent<PlayerDetails>().name;
+
+                //Disable their Vote button
+                GameObject.Find("VoteButton"+(alive + dead).ToString()).GetComponent<Button>().enabled = false;
+
+                //set Color
+                name.color = playerColors[i];
+                dead ++;
+            }
         }
 
     }

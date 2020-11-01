@@ -13,7 +13,7 @@ public class PlayerSetup : MonoBehaviour
 
     void Start()
     {
-        players = GameObject.FindGameObjectsWithTag("Player");
+        players = GameObject.Find("GameDetails").GetComponent<GameDetails>().GetPlayers();
         rnd = new System.Random();
 
         int noImpostors = NoOfImpostors();
@@ -57,6 +57,8 @@ public class PlayerSetup : MonoBehaviour
             }
         }
 
+        GameObject.Find("GameDetails").GetComponent<GameDetails>().SetImpostors(impostors);
+
     }
 
     private void SetupPlayers() {
@@ -71,6 +73,8 @@ public class PlayerSetup : MonoBehaviour
             else {
                 player.GetComponent<Innocent>().IsInnocent();
             }
+
+            player.GetComponent<PlayerDetails>().name = "Player"+rnd.Next(100).ToString();
         
         }
 
@@ -79,22 +83,35 @@ public class PlayerSetup : MonoBehaviour
     private void AssignColours(){
 
         Material[] playerMaterials = GameObject.Find("Skin Controller").GetComponent<SkinController>().GetMaterials();
-        Debug.Log(playerMaterials.Length);
+        Color[] possiblePlayerColors = GameObject.Find("Skin Controller").GetComponent<SkinController>().GetColors();
+        Color[] playerColors = new Color[players.Length];
 
         for(int i = 0; i < players.Length; i++){
-
+            //set and record what color the player is
             Transform child = players[i].transform.GetChild(0);
             int temPos = rnd.Next(playerMaterials.Length);
             child.GetComponent<SkinnedMeshRenderer>().material = playerMaterials[temPos];
+            playerColors[i] = possiblePlayerColors[temPos];
 
+            //take that material out of the choices available
             Material[] playerMaterialsTemp = new Material[playerMaterials.Length - 1];
             for(int j = 0; j < playerMaterials.Length; j++){
                 if(j<temPos){playerMaterialsTemp[j] = playerMaterials[j];}
                 else if(j>temPos){playerMaterialsTemp[j-1] = playerMaterials[j];}
             }
+            //tale that color out of that choices avalable
+            Color[] playerColorTemp = new Color[possiblePlayerColors.Length - 1];
+            for(int j = 0; j < possiblePlayerColors.Length; j++){
+                if(j<temPos){playerColorTemp[j] = possiblePlayerColors[j];}
+                else if(j>temPos){playerColorTemp[j-1] = possiblePlayerColors[j];}
+            }
+
             playerMaterials = playerMaterialsTemp;
+            possiblePlayerColors = playerColorTemp;
         }
 
+        
+        GameObject.Find("GameDetails").GetComponent<GameDetails>().SetColors(playerColors);
 
     }
             

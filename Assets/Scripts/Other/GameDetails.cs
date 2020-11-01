@@ -8,7 +8,7 @@ public class GameDetails : MonoBehaviour
     private GameObject[] impostors;
     private Color[] playerColors;
 
-    void Start(){
+    void Awake(){
         players = GameObject.FindGameObjectsWithTag("Player");
     }
 

@@ -12,19 +12,31 @@ public class MapLightController : MonoBehaviour
     private Light morseLight;
     private string morsePattern = ".- .--- --.";
 
+    private bool flicker = true;
+
+    System.Random rnd ;
+
     void Start()
     {
         normalLights = GameObject.FindGameObjectsWithTag("Light");
         morseLight = GameObject.Find("MorseSpotlight").GetComponent<Light>();
+        rnd = new System.Random();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         StartCoroutine(MorseFlicker());
+
+        if(flicker){
+            
+            StartCoroutine(RandomFlicker());
+            
+        }
         
     }
 
+    //get the light to flicker in morse
     IEnumerator MorseFlicker(){
         while(true){
             for(int i = 0; i < morsePattern.Length; i++){
@@ -45,8 +57,6 @@ public class MapLightController : MonoBehaviour
                 float timePassed = 0f;
                 if (morsePattern[i] == ' '){
                     length = unit * 7f;
-                    // morseLight.enabled = false;
-                    // yield return new WaitForSeconds(length);
                     while (timePassed < length){
                         morseLight.enabled = false;
                         timePassed += Time.deltaTime;
@@ -54,8 +64,6 @@ public class MapLightController : MonoBehaviour
                     }
 
                 }else{
-                    // morseLight.enabled = true;
-                    // yield return new WaitForSeconds(length);
                     while (timePassed < length){
                         morseLight.enabled = true;
                         timePassed += Time.deltaTime;
@@ -64,8 +72,6 @@ public class MapLightController : MonoBehaviour
 
                     if(charPause){
                         timePassed = 0f;
-                        // morseLight.enabled = false;
-                        // yield return new WaitForSeconds(length);
                         while (timePassed < unit){
                             morseLight.enabled = false;
                             timePassed += Time.deltaTime;
@@ -78,13 +84,29 @@ public class MapLightController : MonoBehaviour
                 
             }
             float timePassedSeq = 0f;
-            // morseLight.enabled = false;
-            // yield return new WaitForSeconds(unit * 10);
             while(timePassedSeq < unit * 10){
                 morseLight.enabled = false;
                 timePassedSeq += Time.deltaTime;
                 yield return null; 
             }
         }
+    }
+
+    IEnumerator RandomFlicker(){
+        flicker = false;
+        int light = rnd.Next(normalLights.Length);
+        int amount = rnd.Next(5);
+        float timePassed = 0f;
+        for(int i = 0; i < amount; i++){
+            normalLights[light].GetComponent<Light>().enabled = !normalLights[light].GetComponent<Light>().enabled;
+            while(timePassed < 0.2){
+                timePassed += Time.deltaTime;
+                yield return null; 
+            }
+        }
+        
+        normalLights[light].GetComponent<Light>().enabled = true;
+        
+        flicker = true;
     }
 }

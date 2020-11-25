@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Imposter
   - Map
+  - DeadPlayer
+  - Light
   layers:
   - Default
   - TransparentFX

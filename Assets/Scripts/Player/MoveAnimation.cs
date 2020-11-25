@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror;
 
-public class MoveAnimation : NetworkBehaviour
+public class MoveAnimation : MonoBehaviour
 {
 
     Animator animPlayer;
@@ -13,11 +12,10 @@ public class MoveAnimation : NetworkBehaviour
     {
         animPlayer = GetComponent<Animator>();
     }
-    
+
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void StartAnimation(){
@@ -38,6 +36,9 @@ public class MoveAnimation : NetworkBehaviour
     }
 
     public void IsDead(){
+        if(animPlayer == null){
+            animPlayer = GetComponent<Animator>();
+        }
         animPlayer.SetTrigger("dead");
     }
 

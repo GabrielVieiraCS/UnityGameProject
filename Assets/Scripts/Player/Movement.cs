@@ -5,7 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
 
-    public bool isDummy;
+    public bool isDummy = false;
 
     private MoveAnimation moveAnimation;
     private float turnSmoothVel;
@@ -21,7 +21,7 @@ public class Movement : MonoBehaviour
 
     void Start(){
         moveAnimation = GetComponent<MoveAnimation>();
-        if(isDummy == null){ isDummy = false;}
+        //if(isDummy == null){ isDummy = false;}
     }
     void Update()
     {

@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
 
-    public bool isDummy = false;
+    //public bool isDummy = false;
 
     private MoveAnimation moveAnimation;
     private float turnSmoothVel;
@@ -15,17 +16,30 @@ public class Movement : MonoBehaviour
 
     public Transform cam;
     public CharacterController controller;
-    public float speed = 6f;
+
+    private float runLimit;
+    private float level;
+    private float spending;
+    private bool isRunning = false;
+    public Image bar;
+
+    private float speed;
+    public float walkSpeed;
+    public float runSpeed;
     public float turnSmoothTime = 0.1f;
     // Update is called once per frame
 
     void Start(){
         moveAnimation = GetComponent<MoveAnimation>();
         //if(isDummy == null){ isDummy = false;}
+        speed = walkSpeed;
+        runLimit = 100;
+        spending = 10;
+        level = runLimit;
     }
     void Update()
     {
-        if(isDummy){return;}
+        //if(isDummy){return;}
 
         //if player is on the ground, stop him falling
         groundedPlayer = controller.isGrounded;
@@ -42,7 +56,10 @@ public class Movement : MonoBehaviour
 
         if(direction.magnitude >= 0.1f){
             //set animation to running
-            moveAnimation.StartAnimation();
+            if(!isRunning){
+                moveAnimation.StartAnimation();
+            }
+            
 
             //set the players face to the same as the camera
             float targetAngle = Mathf.Atan2(direction.x,direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
@@ -64,6 +81,24 @@ public class Movement : MonoBehaviour
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+
+        if(Input.GetKeyDown(KeyCode.LeftShift) && level > 0){
+            speed = runSpeed;
+            moveAnimation.StartRunning();
+            isRunning = true;
+        }else if (Input.GetKeyUp(KeyCode.LeftShift) || level < 0){
+            speed = walkSpeed;
+            moveAnimation.StopRunning();
+            isRunning = false;
+        }
+
+        if(isRunning && level > 0){
+            level -= spending * (Time.deltaTime * 1.5f);
+            bar.rectTransform.localScale = new Vector3((level/100),1f,1f);
+        }else if (!isRunning && level < 100){
+            level += spending * (Time.deltaTime / 2);
+            bar.rectTransform.localScale = new Vector3((level/100),1f,1f);
+        }
 
     }
 }

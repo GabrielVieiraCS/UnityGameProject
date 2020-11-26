@@ -58,8 +58,9 @@ public class DoorOne : MonoBehaviour
 
     public void PasswordEntered(){
         string userAns = GameObject.Find("Door1Text").GetComponent<Text>().text;
-        if (userAns == accPass){
+        if (userAns.ToLower() == accPass){
             GameObject.Find("Door1").SetActive(false);
+            interact.ObjectiveLeft();
             ExitScreen();
         }
     }

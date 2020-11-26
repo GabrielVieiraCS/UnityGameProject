@@ -23,8 +23,16 @@ public class MoveAnimation : MonoBehaviour
         
     }
 
+    public void StartRunning(){
+        animPlayer.SetTrigger("run");
+    }
+
     public void StopAnimation(){
         animPlayer.SetTrigger("stop");
+    }
+
+    public void StopRunning(){
+        animPlayer.SetTrigger("stopRun");
     }
 
     public void Jump() {
@@ -34,6 +42,8 @@ public class MoveAnimation : MonoBehaviour
     public void StopJump() {
         animPlayer.SetTrigger("stopJump");
     }
+
+    //This is no longer relavent - Old scripts use it so it is left in
 
     public void IsDead(){
         if(animPlayer == null){

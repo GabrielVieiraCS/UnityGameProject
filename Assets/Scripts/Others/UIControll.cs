@@ -10,6 +10,7 @@ public class UIControll : MonoBehaviour
 
     [Header("Door1 Script")]
     public DoorOne doorScript;
+    public HideLockers hideScript;
     
     void Start()
     {
@@ -25,6 +26,8 @@ public class UIControll : MonoBehaviour
     public void ActivateObjective(int objID){
         if(objID == 1){
             doorScript.ShowUI();
+        }else if (objID == 2){
+            hideScript.Hide();
         }
     }
 }

@@ -1,19 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIControll : MonoBehaviour
 {
-    enum Objective{
-        Door1
-    }
 
     [Header("Door1 Script")]
     public DoorOne doorScript;
+    [Header("Lockers Script")]
     public HideLockers hideScript;
+    [Header("Items Script")]
+    public GameController gc;
     
     void Start()
     {
+        GameObject.Find("ObjectiveText").GetComponent<Text>().CrossFadeAlpha(0.8f, 0f, false);
         GameObject.Find("Door1Canvas").SetActive(false);
     }
 

@@ -50,12 +50,14 @@ public class HideLockers : MonoBehaviour
     public void Hide(){
         if(isHiding){
             isHiding = false;
+            player.GetComponent<PlayerInfo>().NotHiding();
             Transform child = player.transform.GetChild(0);
             child.GetComponent<SkinnedMeshRenderer> ().enabled = true;
             player.GetComponent<Movement>().enabled = true;
             worldLight.SetActive(false);
         }else{
             isHiding = true;
+            player.GetComponent<PlayerInfo>().IsHiding();
             Transform child = player.transform.GetChild(0);
             child.GetComponent<SkinnedMeshRenderer> ().enabled = false;
             player.GetComponent<Movement>().enabled = false;

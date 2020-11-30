@@ -6,8 +6,9 @@ using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour
 {
     private NavMeshAgent Enemy;
-    public Transform Player;
+    public Transform player;
     static Animator anim;
+    private PlayerInfo pInfo;
     //public float EnemyDistanceRun = 4.0f;
 
 
@@ -16,16 +17,19 @@ public class EnemyMovement : MonoBehaviour
     {
         //Enemy = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        pInfo = player.GetComponent<PlayerInfo>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = Player.position - this.transform.position;
+        Vector3 direction = player.position - this.transform.position;
         float angle = Vector3.Angle(direction,this.transform.forward);
         // Run towards Player
 
-        if (Vector3.Distance(Player.position, this.transform.position) < 10 && angle < 65)
+        bool hiding = pInfo.GetHidingStatus();
+
+        if (Vector3.Distance(player.position, this.transform.position) < 10 && angle < 65 && (!hiding) )
         {
             direction.y = 0;
 
@@ -37,11 +41,13 @@ public class EnemyMovement : MonoBehaviour
                 this.transform.Translate(0,0,0.09f);
                 anim.SetBool("isWalking",true);
                 anim.SetBool("isAttacking",false);
+                pInfo.DamageTaken(15f);
             }
             else
             {
                 anim.SetBool("isAttacking",true);
                 anim.SetBool("isWalking",false);
+                pInfo.DamageTaken(25f);
             }
         }
         else

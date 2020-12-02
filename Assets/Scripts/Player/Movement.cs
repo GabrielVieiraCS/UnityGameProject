@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Movement : MonoBehaviour
 {
 
+
     //public bool isDummy = false;
 
     private MoveAnimation moveAnimation;
@@ -27,7 +28,16 @@ public class Movement : MonoBehaviour
     public float walkSpeed;
     public float runSpeed;
     public float turnSmoothTime = 0.1f;
-    // Update is called once per frame
+
+    [Header("Clips")]
+    private AudioSource walkSFX;
+    public AudioClip clip1;
+    public AudioClip clip2;
+    public AudioClip clip3;
+    public AudioClip clip4;
+    public AudioClip clip5;
+    public AudioClip clip6;
+    public AudioClip clip7;
 
     void Start(){
         moveAnimation = GetComponent<MoveAnimation>();
@@ -36,6 +46,8 @@ public class Movement : MonoBehaviour
         runLimit = 100;
         spending = 10;
         level = runLimit;
+
+        walkSFX = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -58,6 +70,27 @@ public class Movement : MonoBehaviour
             //set animation to running
             if(!isRunning){
                 moveAnimation.StartAnimation();
+            }
+
+            if(walkSFX.isPlaying == false){
+                System.Random rnd = new System.Random();
+                int v = rnd.Next(70);
+                if(v <= 10){
+                    walkSFX.PlayOneShot(clip1);
+                }else if(v <= 20){
+                    walkSFX.PlayOneShot(clip2);
+                }else if(v <= 30){
+                    walkSFX.PlayOneShot(clip3);
+                }else if(v <= 40){
+                    walkSFX.PlayOneShot(clip4);
+                }else if(v <= 50){
+                    walkSFX.PlayOneShot(clip5);
+                }else if(v <= 60){
+                    walkSFX.PlayOneShot(clip6);
+                }else if(v <= 70){
+                    walkSFX.PlayOneShot(clip7);
+                }
+                
             }
             
 
@@ -86,10 +119,12 @@ public class Movement : MonoBehaviour
             speed = runSpeed;
             moveAnimation.StartRunning();
             isRunning = true;
+            walkSFX.pitch = 1.5f;
         }else if (Input.GetKeyUp(KeyCode.LeftShift) || level < 0){
             speed = walkSpeed;
             moveAnimation.StopRunning();
             isRunning = false;
+            walkSFX.pitch = 1f;
         }
 
         if(isRunning && level > 0){
@@ -101,4 +136,6 @@ public class Movement : MonoBehaviour
         }
 
     }
+
+    
 }

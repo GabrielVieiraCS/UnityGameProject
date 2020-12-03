@@ -4,20 +4,27 @@ using UnityEngine;
 
 public class EnemySFX : MonoBehaviour
 {
-    public AudioSource idleSFX;
-    public AudioSource attackSFX;
-    public AudioSource movementSFX;
+    public AudioClip idleSFX;
+    public AudioClip attackSFX;
+    public AudioClip movementSFX;
+    public AudioSource source;
 
     public void PlayidleSFX() {
-        idleSFX.Play();
+        if(source.isPlaying == false){
+            source.PlayOneShot(idleSFX);
+        }
+        
     }
 
     public void PlayattackSFX() {
-        attackSFX.Play();
+        if(source.isPlaying == false){source.PlayOneShot(attackSFX);}
+        
+        
     }
 
     public void PlaymovementSFX() {
-        movementSFX.Play();
+        source.PlayOneShot(movementSFX);
+        
     }
 
     

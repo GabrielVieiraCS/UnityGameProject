@@ -81,7 +81,7 @@ public class OneTwoThreeTask : MonoBehaviour
         }else{
             foreach(GameObject button in buttons){
                 button.GetComponent<Image>().color = Color.red;
-                noOn = 1;
+                noOn = 0;
             }
         }
         

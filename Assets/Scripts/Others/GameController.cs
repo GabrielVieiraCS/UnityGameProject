@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour
         if(distance < 3f && item.activeInHierarchy){
             isNear = true;
             nearObject = item;
-            interact.NearObjective(3);
+            interact.NearObjective(4);
         }
     }
 
@@ -61,6 +61,7 @@ public class GameController : MonoBehaviour
         if(found == items.Length){
             GameWon();
         }
+        interact.ObjectiveLeft();
     }
 
     private void GameWon(){

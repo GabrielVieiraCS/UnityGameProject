@@ -21,7 +21,7 @@ public class Movement : MonoBehaviour
     private float runLimit;
     private float level;
     private float spending;
-    private bool isRunning = false;
+    public bool isRunning = false;
     public Image bar;
 
     private float speed;

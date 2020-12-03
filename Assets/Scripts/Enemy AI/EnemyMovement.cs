@@ -9,15 +9,22 @@ public class EnemyMovement : MonoBehaviour
     public Transform player;
     static Animator anim;
     private PlayerInfo pInfo;
+    private Movement playerRun;
+    private EnemySFX soundFX;
     //public float EnemyDistanceRun = 4.0f;
 
-
+    System.Random rnd;
+    public bool idleAudio = false;
     // Start is called before the first frame update
     void Start()
     {
         //Enemy = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         pInfo = player.GetComponent<PlayerInfo>();
+        playerRun = player.GetComponent<Movement>();
+        soundFX = GetComponent<EnemySFX>();
+
+        rnd = new System.Random();
     }
 
     // Update is called once per frame
@@ -28,8 +35,8 @@ public class EnemyMovement : MonoBehaviour
         // Run towards Player
 
         bool hiding = pInfo.GetHidingStatus();
-
-        if (Vector3.Distance(player.position, this.transform.position) < 10 && angle < 65 && (!hiding) )
+        bool running = playerRun.isRunning;
+        if ((Vector3.Distance(player.position, this.transform.position) < 25 && angle < 65 && (!hiding)) || (running && Vector3.Distance(player.position, this.transform.position) < 50))
         {
             direction.y = 0;
 
@@ -41,13 +48,14 @@ public class EnemyMovement : MonoBehaviour
                 this.transform.Translate(0,0,0.09f);
                 anim.SetBool("isWalking",true);
                 anim.SetBool("isAttacking",false);
-                pInfo.DamageTaken(15f);
+                soundFX.PlaymovementSFX();
             }
             else
             {
                 anim.SetBool("isAttacking",true);
                 anim.SetBool("isWalking",false);
                 pInfo.DamageTaken(25f);
+                soundFX.PlayattackSFX();
             }
         }
         else
@@ -55,6 +63,23 @@ public class EnemyMovement : MonoBehaviour
             anim.SetBool("isIdle",true);
             anim.SetBool("isWalking",false);
             anim.SetBool("isAttacking",false);
+            if(idleAudio == false){
+                StartCoroutine(RandomidleNoise());
+            }
+            
         }
+    }
+
+    IEnumerator RandomidleNoise(){
+        soundFX.PlayidleSFX();
+        idleAudio = true;
+        float delay = rnd.Next(40,100);
+        float timePassed = 0f;
+        while(timePassed < delay){
+            timePassed += Time.deltaTime;
+            yield return null; 
+        }
+        
+        idleAudio = false;
     }
 }

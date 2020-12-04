@@ -36,7 +36,7 @@ public class EnemyMovement : MonoBehaviour
 
         bool hiding = pInfo.GetHidingStatus();
         bool running = playerRun.isRunning;
-        if ((Vector3.Distance(player.position, this.transform.position) < 25 && angle < 65 && (!hiding)) || (running && Vector3.Distance(player.position, this.transform.position) < 50))
+        if (((Vector3.Distance(player.position, this.transform.position) < 25 && angle < 65 ) || (running && Vector3.Distance(player.position, this.transform.position) < 50)) && (!hiding))
         {
             direction.y = 0;
 

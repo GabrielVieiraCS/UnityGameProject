@@ -10,11 +10,15 @@ public class EnemySFX : MonoBehaviour
     public AudioSource source;
 
     public void PlayidleSFX() {
-        source.PlayOneShot(idleSFX);
+        if(source.isPlaying == false){
+            source.PlayOneShot(idleSFX);
+        }
+        
     }
 
     public void PlayattackSFX() {
-        source.PlayOneShot(attackSFX);
+        if(source.isPlaying == false){source.PlayOneShot(attackSFX);}
+        
         
     }
 

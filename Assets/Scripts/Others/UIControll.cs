@@ -16,6 +16,9 @@ public class UIControll : MonoBehaviour
     public GlassPennel gp;
     [Header("One Two Three Pannel Script")]
     public OneTwoThreeTask oneTwoScript;
+    [Header("Audio 1")]
+    public AudioLog audioLogs;
+
 
     void Start()
     {
@@ -48,6 +51,8 @@ public class UIControll : MonoBehaviour
             gc.CollectItem();
         }else if(objID == 5){
             oneTwoScript.ShowUI();
+        }else if (objID == 6){
+            audioLogs.PlayAudio();
         }
     }
 

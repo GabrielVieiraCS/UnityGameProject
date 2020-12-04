@@ -38,7 +38,7 @@ public class GameController : MonoBehaviour
 
     private void CheckIfNear(GameObject item){
         float distance = (item.transform.position - player.transform.position).magnitude;
-        if(distance < 3f && item.activeInHierarchy){
+        if(distance < 4f && item.activeInHierarchy){
             isNear = true;
             nearObject = item;
             interact.NearObjective(4);
@@ -47,7 +47,7 @@ public class GameController : MonoBehaviour
 
     private void CheckIfLeft(){
         float distance = (nearObject.transform.position - player.transform.position).magnitude;
-        if(distance > 3f){
+        if(distance > 4f){
             isNear = false;
             nearObject = null;
             interact.ObjectiveLeft();

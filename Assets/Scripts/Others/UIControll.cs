@@ -18,6 +18,10 @@ public class UIControll : MonoBehaviour
     public OneTwoThreeTask oneTwoScript;
     [Header("Audio 1")]
     public AudioLog audioLogs;
+    [Header("Audio Jakub")]
+    public AudioLogsJakub audioLogsJakub;
+    [Header("Audio Gabs")]
+    public AudioLogsGabs audioLogsGabs;
 
 
     void Start()
@@ -53,6 +57,10 @@ public class UIControll : MonoBehaviour
             oneTwoScript.ShowUI();
         }else if (objID == 6){
             audioLogs.PlayAudio();
+        }else if(objID == 7){
+            audioLogsJakub.PlayAudio();
+        }else if(objID == 8){
+            audioLogsGabs.PlayAudio();
         }
     }
 

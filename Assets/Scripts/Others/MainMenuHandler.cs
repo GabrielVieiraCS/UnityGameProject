@@ -11,6 +11,13 @@ public class MainMenuHandler : MonoBehaviour
     void Start(){
         rulesCanvas.SetActive(false);
     }
+    
+    void Update(){
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
+    }
 
     public void DisplayRules(){
         rulesCanvas.SetActive(true);

@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
     
+    public Text itemText;
+
     private GameObject[] items;
     private Text objectiveText;
     private bool isNear = false;
@@ -22,6 +25,13 @@ public class GameController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         interact = player.GetComponent<Interaction>();
         objectiveText.text = "Items Found [0/"+items.Length.ToString()+"]";
+
+        string name = "Items Left: \n";
+        foreach(GameObject item in items){
+            name += item.name + "\n";
+        }
+
+        itemText.text = name;
     }
 
     // Update is called once per frame
@@ -33,6 +43,11 @@ public class GameController : MonoBehaviour
             foreach(GameObject item in items){
                 CheckIfNear(item);
             }
+        }
+
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
         }
     }
 
@@ -61,11 +76,21 @@ public class GameController : MonoBehaviour
         if(found == items.Length){
             GameWon();
         }
+        UpdateUI();
         interact.ObjectiveLeft();
     }
 
+    public void UpdateUI(){
+        string name = "Items Left: \n";
+        foreach(GameObject item in items){
+            if(item.activeSelf){name += item.name + "\n";}
+        }
+
+        itemText.text = name;
+    }
+
     private void GameWon(){
-        //What to do when game won
+        SceneManager.LoadScene("Game Won");
     }
 
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerInfo : MonoBehaviour
 {
@@ -50,6 +51,6 @@ public class PlayerInfo : MonoBehaviour
     }
 
     private void GameOver(){
-        // what to do when dead
+        SceneManager.LoadScene("Player Died");
     }
 }

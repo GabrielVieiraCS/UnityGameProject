@@ -34,7 +34,7 @@ public class OneTwoThreeTask : MonoBehaviour
 
         System.Random rnd = new System.Random();
         for(int i = 0; i < 10; i ++){
-            buttons[i].GetComponent<Image>().color = Color.red;
+            buttons[i].GetComponent<Image>().color = new Color(124f/255f, 10f/255f, 2f/255);
             buttons[i].GetComponentInChildren<Text>().text = numbers[i].ToString();
         }
 
@@ -80,7 +80,7 @@ public class OneTwoThreeTask : MonoBehaviour
             noOn ++;
         }else{
             foreach(GameObject button in buttons){
-                button.GetComponent<Image>().color = Color.red;
+                button.GetComponent<Image>().color = new Color(124f/255f, 10f/255f, 2f/255);
                 noOn = 0;
             }
         }
@@ -89,8 +89,8 @@ public class OneTwoThreeTask : MonoBehaviour
     }
 
     private void FlipColour(int id){
-        if(buttons[id].GetComponent<Image>().color == Color.red){
-            buttons[id].GetComponent<Image>().color = Color.blue;
+        if(buttons[id].GetComponent<Image>().color == new Color(124f/255f, 10f/255f, 2f/255)){
+            buttons[id].GetComponent<Image>().color = new Color(7f/255f, 136f/255f, 70f/255f);
         }else{
             buttons[id].GetComponent<Image>().color = Color.red;
         }
@@ -99,7 +99,7 @@ public class OneTwoThreeTask : MonoBehaviour
     private void CheckIfWon(){
         bool won = true;
         foreach (GameObject button in buttons){
-            if(button.GetComponent<Image>().color == Color.red){
+            if(button.GetComponent<Image>().color == new Color(124f/255f, 10f/255f, 2f/255)){
                 won = false;
                 break;
             }

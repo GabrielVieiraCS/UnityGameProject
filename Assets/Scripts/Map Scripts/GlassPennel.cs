@@ -31,9 +31,9 @@ public class GlassPennel : MonoBehaviour
         foreach(GameObject button in buttons){
             int v = rnd.Next(100);
             if((v % 2) == 0){
-                button.GetComponent<Image>().color = Color.blue;
+                button.GetComponent<Image>().color = new Color(7f/255f, 136f/255f, 70f/255f);
             }else{
-                button.GetComponent<Image>().color = Color.red;
+                button.GetComponent<Image>().color = new Color(124f/255f, 10f/255f, 2f/255);
             }
         }
 
@@ -106,17 +106,17 @@ public class GlassPennel : MonoBehaviour
     }
 
     private void FlipColour(int id){
-        if(buttons[id].GetComponent<Image>().color == Color.red){
-            buttons[id].GetComponent<Image>().color = Color.blue;
+        if(buttons[id].GetComponent<Image>().color == new Color(124f/255f, 10f/255f, 2f/255)){
+            buttons[id].GetComponent<Image>().color = new Color(7f/255f, 136f/255f, 70f/255f);
         }else{
-            buttons[id].GetComponent<Image>().color = Color.red;
+            buttons[id].GetComponent<Image>().color = new Color(124f/255f, 10f/255f, 2f/255);
         }
     }
 
     private void CheckIfWon(){
         bool won = true;
         foreach (GameObject button in buttons){
-            if(button.GetComponent<Image>().color == Color.red){
+            if(button.GetComponent<Image>().color == new Color(124f/255f, 10f/255f, 2f/255)){
                 won = false;
                 break;
             }

@@ -425,6 +425,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8938548897884402896, guid: 5bd6404af98b0e74a92554c114904f22, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8938548897884402897, guid: 5bd6404af98b0e74a92554c114904f22, type: 3}
       propertyPath: playerHead
       value: 
@@ -637,9 +641,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -4521,7 +4525,7 @@ PrefabInstance:
       objectReference: {fileID: 840971143}
     - target: {fileID: 5403177610942652270, guid: 202f289ee8de2ff4e86c043456c7bdd8, type: 3}
       propertyPath: rolloffCustomCurve.m_Curve.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5403177610942652270, guid: 202f289ee8de2ff4e86c043456c7bdd8, type: 3}
       propertyPath: Loop
@@ -4541,27 +4545,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5403177610942652270, guid: 202f289ee8de2ff4e86c043456c7bdd8, type: 3}
       propertyPath: MaxDistance
-      value: 200
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 5403177610942652270, guid: 202f289ee8de2ff4e86c043456c7bdd8, type: 3}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].time
-      value: 0.14162019
+      value: 0.2537112
       objectReference: {fileID: 0}
     - target: {fileID: 5403177610942652270, guid: 202f289ee8de2ff4e86c043456c7bdd8, type: 3}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].value
-      value: 0.35473645
+      value: 0.08707963
       objectReference: {fileID: 0}
     - target: {fileID: 5403177610942652270, guid: 202f289ee8de2ff4e86c043456c7bdd8, type: 3}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].inSlope
-      value: -1.337786
+      value: -0.84790003
       objectReference: {fileID: 0}
     - target: {fileID: 5403177610942652270, guid: 202f289ee8de2ff4e86c043456c7bdd8, type: 3}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].outSlope
-      value: -1.337786
+      value: -0.84790003
       objectReference: {fileID: 0}
     - target: {fileID: 5403177610942652270, guid: 202f289ee8de2ff4e86c043456c7bdd8, type: 3}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[2].time
-      value: 0.21396205
+      value: 0.638985
       objectReference: {fileID: 0}
     - target: {fileID: 5403177610942652270, guid: 202f289ee8de2ff4e86c043456c7bdd8, type: 3}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[2].inWeight
@@ -4573,19 +4577,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5403177610942652270, guid: 202f289ee8de2ff4e86c043456c7bdd8, type: 3}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[2].value
-      value: 0.14545976
+      value: 0.018516272
       objectReference: {fileID: 0}
     - target: {fileID: 5403177610942652270, guid: 202f289ee8de2ff4e86c043456c7bdd8, type: 3}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[2].inSlope
-      value: -0.84790003
+      value: -0.054661006
       objectReference: {fileID: 0}
     - target: {fileID: 5403177610942652270, guid: 202f289ee8de2ff4e86c043456c7bdd8, type: 3}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[2].outSlope
-      value: -0.84790003
+      value: -0.054661006
       objectReference: {fileID: 0}
     - target: {fileID: 5403177610942652270, guid: 202f289ee8de2ff4e86c043456c7bdd8, type: 3}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[3].time
-      value: 0.4527852
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5403177610942652270, guid: 202f289ee8de2ff4e86c043456c7bdd8, type: 3}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[3].inWeight
@@ -4597,15 +4601,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5403177610942652270, guid: 202f289ee8de2ff4e86c043456c7bdd8, type: 3}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[3].value
-      value: 0.030205712
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5403177610942652270, guid: 202f289ee8de2ff4e86c043456c7bdd8, type: 3}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[3].inSlope
-      value: -0.27860805
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5403177610942652270, guid: 202f289ee8de2ff4e86c043456c7bdd8, type: 3}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[3].outSlope
-      value: -0.27860805
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5403177610942652270, guid: 202f289ee8de2ff4e86c043456c7bdd8, type: 3}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[4].time
@@ -4618,6 +4622,10 @@ PrefabInstance:
     - target: {fileID: 5403177610942652270, guid: 202f289ee8de2ff4e86c043456c7bdd8, type: 3}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[4].outWeight
       value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 5403177610942652270, guid: 202f289ee8de2ff4e86c043456c7bdd8, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 202f289ee8de2ff4e86c043456c7bdd8, type: 3}
@@ -7155,9 +7163,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 100
+  MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 2
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -7190,7 +7198,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -11088,6 +11096,112 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4721208944900920, guid: 80a5ea9764443443395b466a9a9acfd7, type: 3}
   m_PrefabInstance: {fileID: 296110634}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &621666250
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 621666251}
+  - component: {fileID: 621666253}
+  - component: {fileID: 621666252}
+  m_Layer: 0
+  m_Name: 'Camera Point Light '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &621666251
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621666250}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.15970612, y: 1.73, z: -5.28}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 513593992}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &621666252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621666250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48b0d727d624b04f9e61f9ca85e2208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHead: {fileID: 1299421668}
+--- !u!108 &621666253
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621666250}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 0
+  m_Shape: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 79.7
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 1
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!4 &621934258 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4165209704744360, guid: 6ceb720bb64e446f6b1f73a0a2d9ec2f, type: 3}
@@ -16933,9 +17047,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -16947,6 +17061,42 @@ AudioSource:
       value: 1
       inSlope: 0
       outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.2757296
+      value: 0.22033298
+      inSlope: -1.2434427
+      outSlope: -1.2434427
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.37163612
+      value: 0.08835837
+      inSlope: -1.1411654
+      outSlope: -1.1411654
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.43058804
+      value: 0.031828254
+      inSlope: -0.6482089
+      outSlope: -0.6482089
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.62764657
+      value: 0.017146869
+      inSlope: -0.11038626
+      outSlope: -0.11038626
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
@@ -16968,7 +17118,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

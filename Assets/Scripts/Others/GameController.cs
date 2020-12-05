@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
 {
     
     public Text itemText;
+    public EndGameScript endGame;
 
     private GameObject[] items;
     private Text objectiveText;
@@ -74,7 +75,7 @@ public class GameController : MonoBehaviour
         found ++;
         objectiveText.text = "Items Found ["+found.ToString()+"/"+items.Length.ToString()+"]";
         if(found == items.Length){
-            GameWon();
+            ItemsCollected();
         }
         UpdateUI();
         interact.ObjectiveLeft();
@@ -89,8 +90,10 @@ public class GameController : MonoBehaviour
         itemText.text = name;
     }
 
-    private void GameWon(){
-        SceneManager.LoadScene("Game Won");
+    private void ItemsCollected(){
+        //SceneManager.LoadScene("Game Won");
+        endGame.ActivateObj();
+        itemText.text = "All Items Found! \n Get to the engine room and \n Blow this place up!!!";
     }
 
 

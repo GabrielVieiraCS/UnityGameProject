@@ -22,6 +22,8 @@ public class UIControll : MonoBehaviour
     public AudioLogsJakub audioLogsJakub;
     [Header("Audio Gabs")]
     public AudioLogsGabs audioLogsGabs;
+    [Header("End Game")]
+    public EndGameScript endGame;
 
 
     void Start()
@@ -61,6 +63,8 @@ public class UIControll : MonoBehaviour
             audioLogsJakub.PlayAudio();
         }else if(objID == 8){
             audioLogsGabs.PlayAudio();
+        }else if(objID == 9){
+            endGame.FinishGame();
         }
     }
 

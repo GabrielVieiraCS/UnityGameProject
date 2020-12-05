@@ -11,8 +11,8 @@ public class Movement : MonoBehaviour
 
     private MoveAnimation moveAnimation;
     private float turnSmoothVel;
-    private bool groundedPlayer;
-    private float gravityValue = -9.81f;
+    // private bool groundedPlayer;
+    // private float gravityValue = -9.81f;
     private Vector3 playerVelocity;
 
     public Transform cam;
@@ -43,8 +43,8 @@ public class Movement : MonoBehaviour
         moveAnimation = GetComponent<MoveAnimation>();
         //if(isDummy == null){ isDummy = false;}
         speed = walkSpeed;
-        runLimit = 100;
-        spending = 10;
+        runLimit = 100f;
+        spending = 10f;
         level = runLimit;
 
         walkSFX = GetComponent<AudioSource>();
@@ -54,11 +54,11 @@ public class Movement : MonoBehaviour
         //if(isDummy){return;}
 
         //if player is on the ground, stop him falling
-        groundedPlayer = controller.isGrounded;
-        if (groundedPlayer && playerVelocity.y < 0) {
-            playerVelocity.y = 0f;
-            moveAnimation.StopJump();
-        }
+        // groundedPlayer = controller.isGrounded;
+        // if (groundedPlayer && playerVelocity.y < 0) {
+        //     playerVelocity.y = 0f;
+        //     moveAnimation.StopJump();
+        // }
 
 
         //get users input for movement
@@ -68,7 +68,7 @@ public class Movement : MonoBehaviour
 
         if(direction.magnitude >= 0.1f){
             //set animation to running
-            if(!isRunning){
+            if(!isRunning) {
                 moveAnimation.StartAnimation();
             }
 
@@ -102,18 +102,18 @@ public class Movement : MonoBehaviour
             // move player in the direction required
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle,0f) * Vector3.forward;
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
-        }else if (direction.magnitude == 0f){
+        }else if (direction.magnitude < 0.1f){
             //stop running animation
             moveAnimation.StopAnimation();
         }
 
-        if (playerVelocity.y == 0f && Input.GetKeyDown(KeyCode.Space)) {
-            moveAnimation.Jump();
-            playerVelocity.y += Mathf.Sqrt(2f * -3.0f * gravityValue);
-        }
+        // if (playerVelocity.y == 0f && Input.GetKeyDown(KeyCode.Space)) {
+        //     moveAnimation.Jump();
+        //     playerVelocity.y += Mathf.Sqrt(2f * -3.0f * gravityValue);
+        // }
 
-        playerVelocity.y += gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
+        // playerVelocity.y += gravityValue * Time.deltaTime;
+        // controller.Move(playerVelocity * Time.deltaTime);
 
         if(Input.GetKeyDown(KeyCode.LeftShift) && level > 0){
             speed = runSpeed;

@@ -785,19 +785,19 @@ MonoBehaviour:
   m_Text: '- Find all items to blow up the ship!
 
 
-    - Listen carfully to where
+    - Listen carefully to where
     the monster is!
 
 
-    - Locate and solve black pannel puzzels.
+    - Locate and solve black panel puzzles.
 
 
     - Hide in
     Lockers to get away from the monster
 
 
-    - Find orage speakers to find out
-    How it happened...'
+    - Find orange speakers to find out
+    how it happened...'
 --- !u!222 &1222282139
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -876,7 +876,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Rulles...
+  m_Text: Rules...
 --- !u!222 &1346959628
 CanvasRenderer:
   m_ObjectHideFlags: 0

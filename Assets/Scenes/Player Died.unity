@@ -1008,7 +1008,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '- You died to the monter... Why dont you give it another go...'
+  m_Text: '- You died to the monster... Why don''t you give it another go...'
 --- !u!222 &1127751267
 CanvasRenderer:
   m_ObjectHideFlags: 0

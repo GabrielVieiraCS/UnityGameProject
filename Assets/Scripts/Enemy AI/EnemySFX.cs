@@ -23,8 +23,7 @@ public class EnemySFX : MonoBehaviour
     }
 
     public void PlaymovementSFX() {
-        source.PlayOneShot(movementSFX);
-        
+        if(source.isPlaying == false){source.PlayOneShot(movementSFX);}
     }
 
     

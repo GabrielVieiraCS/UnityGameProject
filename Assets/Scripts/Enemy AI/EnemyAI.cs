@@ -7,22 +7,22 @@ public class EnemyAI : MonoBehaviour
 {
     private NavMeshAgent Enemy;
     public Transform player;
+    public ParticleSystem Explosion;
     static Animator anim;
     private PlayerInfo pInfo;
     private Movement playerRun;
     private EnemySFX soundFX;
-    private bool aggro = false;
-    private bool hasHit = false;
+    public bool aggro = false;
+    public bool hasHit = false;
     System.Random rnd;
     public bool idleAudio = false;
+
+    public MovementPattern mp;
 
 
     private Vector3[] positionArray = new Vector3[5];
 
-
-
-
-
+ 
 
 
     // Start is called before the first frame update
@@ -39,6 +39,7 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Explosion.Stop();
         Vector3 direction = player.position - this.transform.position;
         float angle = Vector3.Angle(direction,this.transform.forward);
         // Run towards Player
@@ -49,6 +50,8 @@ public class EnemyAI : MonoBehaviour
         {
             aggro = true;
             direction.y = 0;
+
+            mp.enabled = false;
 
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), 0.1f);
 
@@ -64,11 +67,14 @@ public class EnemyAI : MonoBehaviour
             {
                 anim.SetBool("isAttacking",true);
                 anim.SetBool("isWalking",false);
-                pInfo.DamageTaken(25f);
+                pInfo.DamageTaken(rnd.Next(15,25));
                 soundFX.PlayattackSFX();
                 hasHit = true;
                 if (hasHit) {
-                    this.transform.position = RandomSpawnPoint();
+                    Explosion.transform.position = player.transform.position;
+                    Explosion.Play();
+                    mp.enabled = true;
+                    mp.RestartPattern();
                     hasHit = false;
                     aggro = false;
                 }
@@ -77,20 +83,35 @@ public class EnemyAI : MonoBehaviour
         else if (Vector3.Distance(player.position, this.transform.position) > 65)
         {
             aggro = false;
-            anim.SetBool("isIdle",true);
-            anim.SetBool("isWalking",false);
-            anim.SetBool("isAttacking",false);
+            if(!mp.onPath){
+                anim.SetBool("isIdle",true);
+                anim.SetBool("isWalking",false);
+                anim.SetBool("isAttacking",false);
+            }
             if(idleAudio == false){
                 StartCoroutine(RandomidleNoise());
             }
+            if(mp.enabled == false){
+                mp.enabled = true;
+            }
             
+        }else if(((Vector3.Distance(player.position, this.transform.position) < 25 && angle < 65 ) || (running && Vector3.Distance(player.position, this.transform.position) < 50)) && hiding){
+            aggro = false;
+            Explosion.transform.position = player.transform.position;
+            Explosion.Play();
+            mp.enabled = true;
+            mp.RestartPattern();
+        }else{
+            if(mp.enabled == false){
+                mp.enabled = true;
+            }
         }
     }
 
     IEnumerator RandomidleNoise(){
         soundFX.PlayidleSFX();
         idleAudio = true;
-        float delay = rnd.Next(40,100);
+        float delay = rnd.Next(10,50);
         float timePassed = 0f;
         while(timePassed < delay){
             timePassed += Time.deltaTime;
@@ -100,12 +121,5 @@ public class EnemyAI : MonoBehaviour
         idleAudio = false;
     }
 
-    Vector3 RandomSpawnPoint() {
-        positionArray[0] = new Vector3(14,0,40);
-        positionArray[1] = new Vector3(59,0,23);
-        positionArray[2] = new Vector3(77,0,-28);
-        positionArray[3] = new Vector3(-24,0,-107);
-        positionArray[4] = new Vector3(-74,0,-93);
-        return positionArray[rnd.Next(0,4)];
-    }
+    
 }

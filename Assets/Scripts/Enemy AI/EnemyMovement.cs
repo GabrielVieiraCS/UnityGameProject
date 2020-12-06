@@ -14,7 +14,7 @@ public class EnemyMovement : MonoBehaviour
     //public float EnemyDistanceRun = 4.0f;
 
     System.Random rnd;
-    public bool idleAudio = false;
+    private bool idleAudio = false;
     // Start is called before the first frame update
     void Start()
     {

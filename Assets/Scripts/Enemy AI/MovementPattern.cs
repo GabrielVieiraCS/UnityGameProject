@@ -1,0 +1,154 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MovementPattern : MonoBehaviour
+{
+    public EnemyAI aiScript;
+    public GameObject monster;
+    static Animator anim;
+
+    private List<GameObject> storagePath;
+    private List<GameObject> gymPath;
+    private List<GameObject> wepPath;
+    private List<GameObject> engPath;
+    private List<GameObject> dormPath;
+    private List<GameObject> cafPath;
+    private List<GameObject> medPath;
+    private bool waiting = false;
+    private bool started = false;
+
+    private List<GameObject> currentPath;
+    private int pos = 0;
+    public bool onPath = false;
+
+    System.Random rnd;
+
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+        rnd = new System.Random();
+
+        storagePath = new List<GameObject>();
+        for(int i = 0; i < 10; i ++){
+            storagePath.Add(GameObject.Find("Stor"+i.ToString()));
+        }
+
+        gymPath = new List<GameObject>();
+        for(int i = 0; i < 10; i ++){
+            gymPath.Add(GameObject.Find("Gym ("+i.ToString()+")"));
+        }
+
+        wepPath = new List<GameObject>();
+        for(int i = 0; i < 9; i ++){
+            wepPath.Add(GameObject.Find("Wep ("+i.ToString()+")"));
+        }
+
+        engPath = new List<GameObject>();
+        for(int i = 0; i < 9; i ++){
+            engPath.Add(GameObject.Find("Eng ("+i.ToString()+")"));
+        }
+
+        dormPath = new List<GameObject>();
+        for(int i = 0; i < 10; i ++){
+            dormPath.Add(GameObject.Find("Dorm ("+i.ToString()+")"));
+        }
+
+        cafPath = new List<GameObject>();
+        for(int i = 0; i < 9; i ++){
+            cafPath.Add(GameObject.Find("Caf ("+i.ToString()+")"));
+        }
+
+        medPath = new List<GameObject>();
+        for(int i = 0; i < 16; i ++){
+            medPath.Add(GameObject.Find("Med ("+i.ToString()+")"));
+        }
+
+        currentPath = storagePath;
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(pos == currentPath.Count){
+            ChangePath();
+        }
+
+        if(!(currentPath[pos].transform.position == monster.transform.position) && pos == 0){
+            monster.GetComponent<Transform>().position = currentPath[0].GetComponent<Transform>().position;
+        }
+
+        Vector3 direction =  currentPath[pos].transform.position - monster.transform.position ;
+        if(!(direction == new Vector3(0f,0f,0f))){
+            monster.transform.rotation = Quaternion.Slerp(monster.transform.rotation, Quaternion.LookRotation(direction), 0.1f);
+        }
+        float delta = 5f * Time.deltaTime ;
+        monster.transform.position = Vector3.MoveTowards(monster.transform.position, currentPath[pos].GetComponent<Transform>().position, delta);
+        anim.SetBool("isWalking",true);
+
+        if(currentPath[pos].transform.position == monster.transform.position && !waiting){
+            pos ++;
+            onPath = true;
+            waiting = true;
+
+            int num = rnd.Next(1,101);
+            if ((num % 20) == 0){
+                RestartPattern();
+            }
+        }else if(currentPath[pos].transform.position == monster.transform.position && waiting && !started){
+            onPath = false;
+            StartCoroutine(Wait());
+        }
+
+        
+    }
+
+    IEnumerator Wait(){
+        started = true;
+        float delay = rnd.Next(1,5);
+        float timePassed = 0f;
+        while(timePassed < delay){
+            timePassed += Time.deltaTime;
+            yield return null; 
+        }
+        started = false;
+        waiting = false;
+
+    }
+
+    private void ChangePath(){
+        int next = rnd.Next(7);
+        if(next == 0){
+            currentPath = storagePath;
+
+        }else if(next == 1){
+            currentPath = gymPath;
+
+        }else if(next == 2){
+            currentPath = wepPath;
+
+        }else if(next == 3){
+            currentPath = engPath;
+
+        }else if(next == 4){
+            currentPath = dormPath;
+
+        }else if (next == 5){
+            currentPath = cafPath;
+
+        }else if (next == 6){
+            currentPath = medPath;
+        }
+        pos = 0;
+    }
+
+    public void RestartPattern(){
+        ChangePath();
+        monster.GetComponent<Transform>().position = currentPath[0].GetComponent<Transform>().position;
+        waiting = false;
+        onPath = false;
+        started = false;
+
+    }
+}

@@ -6,6 +6,7 @@ public class MovementPattern : MonoBehaviour
 {
     public EnemyAI aiScript;
     public GameObject monster;
+    public GameObject player;
     static Animator anim;
 
     private List<GameObject> storagePath;
@@ -72,7 +73,7 @@ public class MovementPattern : MonoBehaviour
     void Update()
     {
         if(pos == currentPath.Count){
-            ChangePath();
+            MoveToClosestRoom();
         }
 
         if(!(currentPath[pos].transform.position == monster.transform.position) && pos == 0){
@@ -150,5 +151,135 @@ public class MovementPattern : MonoBehaviour
         onPath = false;
         started = false;
 
+    }
+
+
+    // move the monster to the closest(5%), second closest(45%) or thrid closest(50%) room to the player
+    private void MoveToClosestRoom(){
+        List<GameObject> points = storagePath;
+        float distance = (storagePath[0].transform.position - player.transform.position).magnitude;
+        List<GameObject> points2 = storagePath;
+        float distance2 = 200f;
+        List<GameObject> points3 = storagePath;
+        float distance3 = 200f;
+
+        float tempDistance = (gymPath[0].transform.position - player.transform.position).magnitude;
+        if(tempDistance < distance){
+            distance3 = distance2;
+            distance2 = distance;
+            distance = tempDistance;
+            points3 = points2;
+            points2 = points;
+            points = gymPath;
+        }else if(tempDistance < distance2){
+            distance3 = distance2;
+            distance2 = tempDistance;
+            points3 = points2;
+            points2 = gymPath;
+        }else if(tempDistance < distance3){
+            distance3 = tempDistance;
+            points3 = gymPath;
+        }
+
+        tempDistance = (wepPath[0].transform.position - player.transform.position).magnitude ;
+        if(tempDistance < distance){
+            distance3 = distance2;
+            distance2 = distance;
+            distance = tempDistance;
+            points3 = points2;
+            points2 = points;
+            points = wepPath;
+        }else if(tempDistance < distance2){
+            distance3 = distance2;
+            distance2 = tempDistance;
+            points3 = points2;
+            points2 = wepPath;
+        }else if(tempDistance < distance3){
+            distance3 = tempDistance;
+            points3 = wepPath;
+        }
+
+        tempDistance = (engPath[0].transform.position - player.transform.position).magnitude;
+        if( tempDistance < distance){
+            distance3 = distance2;
+            distance2 = distance;
+            distance = tempDistance;
+            points3 = points2;
+            points2 = points;
+            points = engPath;
+        }else if(tempDistance < distance2){
+            distance3 = distance2;
+            distance2 = tempDistance;
+            points3 = points2;
+            points2 = engPath;
+        }else if(tempDistance < distance3){
+            distance3 = tempDistance;
+            points3 = engPath;
+        }
+
+        tempDistance = (dormPath[0].transform.position - player.transform.position).magnitude;
+        if(tempDistance < distance){
+            distance3 = distance2;
+            distance2 = distance;
+            distance = tempDistance;
+            points3 = points2;
+            points2 = points;
+            points = dormPath;
+        }else if(tempDistance < distance2){
+            distance3 = distance2;
+            distance2 = tempDistance;
+            points3 = points2;
+            points2 = dormPath;
+        }else if(tempDistance < distance3){
+            distance3 = tempDistance;
+            points3 = dormPath;
+        }
+
+        tempDistance = (cafPath[0].transform.position - player.transform.position).magnitude;
+        if(tempDistance < distance){
+            distance3 = distance2;
+            distance2 = distance;
+            distance = tempDistance;
+            points3 = points2;
+            points2 = points;
+            points = cafPath;
+        }else if(tempDistance < distance2){
+            distance3 = distance2;
+            distance2 = tempDistance;
+            points3 = points2;
+            points2 = cafPath;
+        }else if(tempDistance < distance3){
+            distance3 = tempDistance;
+            points3 = cafPath;
+        }
+
+        tempDistance = (medPath[0].transform.position - player.transform.position).magnitude;
+        if(tempDistance < distance){
+            distance3 = distance2;
+            distance2 = distance;
+            distance = tempDistance;
+            points3 = points2;
+            points2 = points;
+            points = medPath;
+        }else if(tempDistance < distance2){
+            distance3 = distance2;
+            distance2 = tempDistance;
+            points3 = points2;
+            points2 = medPath;
+        }else if(tempDistance < distance3){
+            distance3 = tempDistance;
+            points3 = medPath;
+        }
+
+        int option = rnd.Next(1,101);
+
+        if(option <= 5){
+            currentPath = points;
+        }else if(option <= 50){
+            currentPath = points2;
+        }else{
+            currentPath = points3;
+        }
+        pos = 0;
     }
 }

@@ -19325,7 +19325,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 945474996}
-  m_LocalRotation: {x: 0.06714333, y: -0.0026811354, z: 0.0001804282, w: 0.99773973}
+  m_LocalRotation: {x: 0.067143336, y: -0.0026811354, z: 0.00018042821, w: 0.99773973}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -19546,7 +19546,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961634823}
-  m_LocalRotation: {x: 0.036194235, y: 0.000000017195104, z: -6.227717e-10, w: 0.99934477}
+  m_LocalRotation: {x: 0.036194216, y: -0.000000017195111, z: 6.227716e-10, w: 0.99934477}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -19968,7 +19968,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5468942908789102029, guid: f3bd7712183de124686937fba5aa9af8, type: 3}
       propertyPath: MaxDistance
-      value: 75
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5468942908789102029, guid: f3bd7712183de124686937fba5aa9af8, type: 3}
       propertyPath: rolloffMode
@@ -21027,7 +21027,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4feb6853a1949b44e92707590904874c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: dfb1f3365bbc9e142bb45ffdfc62bfb5, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -27200,7 +27200,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1214754686}
-  m_LocalRotation: {x: 0.018010667, y: -0.00000001723716, z: 3.105031e-10, w: 0.9998378}
+  m_LocalRotation: {x: 0.018010667, y: 0.000000017237154, z: -3.1050298e-10, w: 0.9998378}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -28549,7 +28549,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1299421668}
-  m_LocalRotation: {x: 0.01801067, y: -0.00000003447432, z: 6.2100625e-10, w: 0.9998378}
+  m_LocalRotation: {x: 0.01801067, y: 0.00000003447432, z: -6.2100625e-10, w: 0.9998378}
   m_LocalPosition: {x: -117.77, y: -5.9900002, z: 7.3199997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -34684,6 +34684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aiScript: {fileID: 1624940359}
   monster: {fileID: 1624940351}
+  player: {fileID: 513593986}
   onPath: 0
 --- !u!114 &1624940359
 MonoBehaviour:

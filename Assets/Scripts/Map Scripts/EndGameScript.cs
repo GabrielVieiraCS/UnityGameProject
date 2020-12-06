@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class EndGameScript : MonoBehaviour
 {
+    // code that controlles the pannel in the engine room that allows you to win the game
+
     public Light lightToChange;
 
     private GameObject player;

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class DeathScreenController : MonoBehaviour
 {
+    // script that controlls the events of what happens when you die
     public GameObject canvas;
     void Start(){
 

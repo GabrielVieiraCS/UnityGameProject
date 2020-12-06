@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AudioLog : MonoBehaviour
 {
+    //script for Amrit's audio log in the game
+
     [Header("Audio Source")]
     public AudioSource log;
     private GameObject player;

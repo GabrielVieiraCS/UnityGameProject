@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class DoorOne : MonoBehaviour
 {
 
+    // script that hendles what interaction happenes with the door that requires morese to get in
+
     [Header("DoorUI")]
     public GameObject password;
     private string accPass = "ajg"; 

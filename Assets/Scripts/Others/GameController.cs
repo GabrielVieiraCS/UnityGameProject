@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     
+    // this script deals with the items you need to pick up
+
     public Text itemText;
     public EndGameScript endGame;
 
@@ -21,6 +23,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+
         objectiveText = GameObject.Find("ObjectiveText").GetComponent<Text>();
         items = GameObject.FindGameObjectsWithTag("Item");
         player = GameObject.FindGameObjectWithTag("Player");
@@ -32,6 +35,7 @@ public class GameController : MonoBehaviour
             name += item.name + "\n";
         }
 
+        //set the side text
         itemText.text = name;
     }
 
@@ -70,6 +74,7 @@ public class GameController : MonoBehaviour
         }
     }
 
+    // what happens when you pick up an item
     public void CollectItem(){
         nearObject.SetActive(false);
         found ++;
@@ -81,6 +86,7 @@ public class GameController : MonoBehaviour
         interact.ObjectiveLeft();
     }
 
+    // updatte the ui on the side of the screen
     public void UpdateUI(){
         string name = "Items Left: \n";
         foreach(GameObject item in items){

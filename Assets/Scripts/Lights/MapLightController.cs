@@ -92,6 +92,7 @@ public class MapLightController : MonoBehaviour
         }
     }
 
+    //get lights around the map to randomly flicker on and off
     IEnumerator RandomFlicker(){
         flicker = false;
         int light = rnd.Next(normalLights.Length);

@@ -5,6 +5,8 @@ using UnityEngine;
 public class MoveAnimation : MonoBehaviour
 {
 
+    // script to deal with the animations for the user
+
     Animator animPlayer;
 
     // Start is called before the first frame update

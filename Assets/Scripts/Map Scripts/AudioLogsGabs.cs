@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AudioLogsGabs : MonoBehaviour
 {
+    //Script for Gabriel's audio log in the game
+
     [Header("Audio Source")]
     public AudioSource log;
     private GameObject player;

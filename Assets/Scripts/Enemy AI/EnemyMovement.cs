@@ -5,6 +5,12 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
+    //
+    //
+    //THIS IS AN OLD AND UN-USED VERSION IF THE EnemyAi.cs SCRIPT
+    //
+    //
+
     private NavMeshAgent Enemy;
     public Transform player;
     static Animator anim;

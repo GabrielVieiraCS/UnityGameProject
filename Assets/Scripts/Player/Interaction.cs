@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Interaction : MonoBehaviour
 {
+
+    //script used to make the players ui change when near an objective
+
     [Header("UI Controller")]
     public UIControll uiController;
     [Header("Use Text")]

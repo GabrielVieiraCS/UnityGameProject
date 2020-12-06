@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AudioLogsJakub : MonoBehaviour
 {
+
+    //script for Jakub's Audio log in the game
     [Header("Audio Source")]
     public AudioSource log;
     private GameObject player;

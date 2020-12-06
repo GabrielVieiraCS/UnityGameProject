@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameWonHandler : MonoBehaviour
 {
+
+    // script that handles the game won scene
+
     void Start(){
 
     }

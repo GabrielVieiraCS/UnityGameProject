@@ -5,6 +5,8 @@ using UnityEngine;
 public class HideLockers : MonoBehaviour
 {
 
+    //script that deals with hiding in the lockers
+
     private GameObject player;
     private Interaction interact;
     private bool isNear = false;

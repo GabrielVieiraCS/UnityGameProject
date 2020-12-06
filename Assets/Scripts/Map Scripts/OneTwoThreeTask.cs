@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class OneTwoThreeTask : MonoBehaviour
 {
+
+    // this is the first task you can do in dorms
+
     [Header("Glass Pannel UI")]
     public GameObject taskCanvas;
     [Header("Glass Pannels")]
@@ -28,10 +31,11 @@ public class OneTwoThreeTask : MonoBehaviour
             buttons.Add(GameObject.Find("OneButton"+i.ToString()));
         }
 
+        //shuffle the numbers to a random order
         List<int> numbers = new List<int>(){0,1,2,3,4,5,6,7,8,9};
         numbers = Shuffle(numbers);
         
-
+        //assign the numbers and make them all red
         System.Random rnd = new System.Random();
         for(int i = 0; i < 10; i ++){
             buttons[i].GetComponent<Image>().color = new Color(124f/255f, 10f/255f, 2f/255);
@@ -74,6 +78,7 @@ public class OneTwoThreeTask : MonoBehaviour
         player.GetComponent<Movement>().enabled = false;
     }
 
+    //what to do when a button is pressed
     public void ButtonPressed(int id){
         if(System.Int32.Parse(buttons[id].GetComponentInChildren<Text>().text) == noOn){
             FlipColour(id);
@@ -88,6 +93,7 @@ public class OneTwoThreeTask : MonoBehaviour
         CheckIfWon();
     }
 
+    //flip the color or a button
     private void FlipColour(int id){
         if(buttons[id].GetComponent<Image>().color == new Color(124f/255f, 10f/255f, 2f/255)){
             buttons[id].GetComponent<Image>().color = new Color(7f/255f, 136f/255f, 70f/255f);
@@ -119,6 +125,7 @@ public class OneTwoThreeTask : MonoBehaviour
         player.GetComponent<Movement>().enabled = true;
     }
 
+    // suffle a given list
     private List<int> Shuffle(List<int> list){  
         System.Random rng = new System.Random();
         int n = list.Count;  

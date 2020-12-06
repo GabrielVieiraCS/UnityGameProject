@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class Movement : MonoBehaviour
 {
 
+    // script that deals with the players movement 
+    // ---- the code commented where part of the old among us game
 
     //public bool isDummy = false;
 

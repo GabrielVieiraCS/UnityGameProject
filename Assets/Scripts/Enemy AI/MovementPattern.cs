@@ -25,6 +25,7 @@ public class MovementPattern : MonoBehaviour
 
     System.Random rnd;
 
+    //At the start, get all the locations of all the routes throughout the map
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -70,8 +71,11 @@ public class MovementPattern : MonoBehaviour
     }
 
     // Update is called once per frame
+    //
+    //get the monster to walk through a route
     void Update()
     {
+        //if finished a route, move to a room close to the player
         if(pos == currentPath.Count){
             MoveToClosestRoom();
         }
@@ -93,6 +97,7 @@ public class MovementPattern : MonoBehaviour
             onPath = true;
             waiting = true;
 
+            //there is a 5% chance that the enemy will teleport to a random different room when walking a route
             int num = rnd.Next(1,101);
             if ((num % 20) == 0){
                 RestartPattern();
@@ -105,6 +110,7 @@ public class MovementPattern : MonoBehaviour
         
     }
 
+    //get the enemy to stand for some time
     IEnumerator Wait(){
         started = true;
         float delay = rnd.Next(1,5);
@@ -118,6 +124,7 @@ public class MovementPattern : MonoBehaviour
 
     }
 
+    //decide what path to travel randomly
     private void ChangePath(){
         int next = rnd.Next(7);
         if(next == 0){
@@ -144,6 +151,7 @@ public class MovementPattern : MonoBehaviour
         pos = 0;
     }
 
+    //randomly change the position of the enemy
     public void RestartPattern(){
         ChangePath();
         monster.GetComponent<Transform>().position = currentPath[0].GetComponent<Transform>().position;

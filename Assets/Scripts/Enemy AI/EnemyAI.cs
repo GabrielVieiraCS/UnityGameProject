@@ -56,6 +56,7 @@ public class EnemyAI : MonoBehaviour
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), 0.1f);
 
             anim.SetBool("isIdle", false);
+            //run towards or attack the player
             if (direction.magnitude > 2 && (aggro))
             {
                 this.transform.Translate(0,0,0.09f);
@@ -80,6 +81,7 @@ public class EnemyAI : MonoBehaviour
                 }
             }
         }
+        //if enemy is to far
         else if (Vector3.Distance(player.position, this.transform.position) > 65)
         {
             aggro = false;
@@ -94,7 +96,7 @@ public class EnemyAI : MonoBehaviour
             if(mp.enabled == false){
                 mp.enabled = true;
             }
-            
+        // what to do if the enemy is hiding
         }else if(((Vector3.Distance(player.position, this.transform.position) < 25 && angle < 65 ) || (running && Vector3.Distance(player.position, this.transform.position) < 50)) && hiding){
             aggro = false;
             Explosion.transform.position = player.transform.position;
@@ -108,6 +110,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    //coroutine meathod to make noses randomly
     IEnumerator RandomidleNoise(){
         soundFX.PlayidleSFX();
         idleAudio = true;

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemySFX : MonoBehaviour
 {
+    //Script to controll the enemy's sound efects
+
     public AudioClip idleSFX;
     public AudioClip attackSFX;
     public AudioClip movementSFX;

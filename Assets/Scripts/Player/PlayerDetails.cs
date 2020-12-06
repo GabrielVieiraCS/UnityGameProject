@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerDetails : MonoBehaviour
 {
 
+    // Old script, not used anymore
+
     public string playerName;
 
 

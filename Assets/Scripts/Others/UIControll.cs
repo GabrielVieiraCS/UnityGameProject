@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class UIControll : MonoBehaviour
 {
 
+    // this script deals with most of the ui events and trigering them
+
     [Header("Door1 Script")]
     public DoorOne doorScript;
     [Header("Lockers Script")]
@@ -68,7 +70,7 @@ public class UIControll : MonoBehaviour
         }
     }
 
-
+    // set up this canvas based on the size of the users screen
     private void SetupCanvasGlass(GameObject glassPannel){
         List<GameObject> buttons = new List<GameObject>();
         GameObject pannel = GameObject.Find("ButtonPanel1");
@@ -82,6 +84,7 @@ public class UIControll : MonoBehaviour
         }
     }
 
+    // set up this canvas based on the size of the users screen
     private void SetUpOneTwoThree(GameObject pannel){
 
         List<GameObject> buttons = new List<GameObject>();

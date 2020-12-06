@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerInfo : MonoBehaviour
 {
+
+    // script in charge with dealing with the users health and health bar
+
     private bool isHiding = false;
     private float maxHealth = 100;
     private float health;

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GlassPennel : MonoBehaviour
 {
+    // this scrip hanndles the minigame in the gym
+
     [Header("Glass Pannel UI")]
     public GameObject taskCanvas;
     [Header("Glass Pannels")]
@@ -27,6 +29,7 @@ public class GlassPennel : MonoBehaviour
             buttons.Add(GameObject.Find("GButton"+i.ToString()));
         }
 
+        //randomly assign colours to the pannels
         System.Random rnd = new System.Random();
         foreach(GameObject button in buttons){
             int v = rnd.Next(100);
@@ -73,6 +76,7 @@ public class GlassPennel : MonoBehaviour
         player.GetComponent<Movement>().enabled = false;
     }
 
+    //what buttons should flip dependent on what button you press
     public void ButtonPressed(int id){
         if(id == 0){
             FlipColour(0); FlipColour(1); FlipColour(3);
@@ -105,6 +109,8 @@ public class GlassPennel : MonoBehaviour
         CheckIfWon();
     }
 
+
+    //flip the color of that respective button
     private void FlipColour(int id){
         if(buttons[id].GetComponent<Image>().color == new Color(124f/255f, 10f/255f, 2f/255)){
             buttons[id].GetComponent<Image>().color = new Color(7f/255f, 136f/255f, 70f/255f);
@@ -131,6 +137,7 @@ public class GlassPennel : MonoBehaviour
         }
     }
 
+    // exit the task
     public void ExitScreen(){
         taskCanvas.SetActive(false);
         player.GetComponent<Movement>().enabled = true;

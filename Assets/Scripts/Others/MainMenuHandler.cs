@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuHandler : MonoBehaviour
 {
+
+    // script that deals with the main menue actions
+
     public GameObject mainCanvas;
     public GameObject rulesCanvas;
 

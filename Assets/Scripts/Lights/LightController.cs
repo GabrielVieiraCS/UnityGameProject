@@ -6,7 +6,7 @@ public class LightController : MonoBehaviour
 {
     public GameObject playerHead;
 
-    // Update is called once per frame
+    // controlls lights and sticks it as a flashlight or a soft light to bearly see the player
     void Update()
     {
         transform.position = playerHead.transform.position + new Vector3(0,1f,0);
